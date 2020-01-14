@@ -1,15 +1,12 @@
 <template>
-  <div>
-    <h1>{{ msg }}</h1>
-
-    <div class="hint">Framework css utilisé: <a class="btn btn-primary" href="https://picturepan2.github.io/spectre/index.html">Spectre
-      css</a></div>
-
+  <div class="form">
     <form id="form-recherche" class="form">
-      <div class="input-group">
-        <span class="input-group-addon">...</span>
+      <div class="input-group form-line-one">
         <input type="text" class="form-input" placeholder="Quel personnage cherchez-vous?">
         <button class="btn btn-primary input-group-btn">Chercher</button>
+      </div>
+      <div class="button-lucky">
+        <button class="btn btn-primary input-group-btn">I'm feeling lucky!</button>
       </div>
     </form>
   </div>
@@ -36,9 +33,23 @@ export default {
 
   .form{
     text-align: center;
-    margin-left: 30%;
-    margin-right: 30%;
-    margin-top: 10%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .form-line-one{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .button-lucky{
+    padding-top: 16px;
   }
 
 </style>

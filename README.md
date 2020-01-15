@@ -1,4 +1,4 @@
-# exhaustif-front
+# FICTIF
 
 ## Project setup
 ```

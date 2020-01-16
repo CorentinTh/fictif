@@ -1,8 +1,23 @@
 <template>
+  <v-app>
+
   <div class="form">
     <form id="form-recherche" class="form">
       <div class="input-group form-line-one">
-        <input type="text" class="form-input" placeholder="Quel personnage cherchez-vous?">
+
+        <v-autocomplete
+          class="form-input"
+          :items="items"
+          :search-input.sync="search"
+          color="white"
+          hide-no-data
+          hide-selected
+          item-text="Description"
+          item-value="API"
+          placeholder="Quel personnage cherchez-vous?"
+          prepend-icon="mdi-database-search"
+          return-object
+        ></v-autocomplete>
         <button class="btn btn-primary input-group-btn">Chercher</button>
       </div>
       <div class="button-lucky">
@@ -10,14 +25,20 @@
       </div>
     </form>
   </div>
+  </v-app>
 </template>
 
 <script>
+import Vuetify from 'vuetify'
+import animals from '../assets/personnage'
+
 export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
+  vuetify: new Vuetify(),
+  data: () => ({
+    items: animals,
+    model: ['Vuetify'],
+    search: null
+  })
 }
 </script>
 

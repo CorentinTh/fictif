@@ -10,7 +10,6 @@ function makeRequestSpotlight (query) {
     }
     query = encodeURIComponent(query)
     let URL = 'https://api.dbpedia-spotlight.org/en/annotate?text=' + query + '&confidence=0.8'
-    // console.log(URL);
     fetch(URL, options)
       .then((result) => {
         return result.json()
@@ -20,7 +19,6 @@ function makeRequestSpotlight (query) {
         data['Resources'].forEach((object) => {
           URIs.push(object['@URI'])
         })
-        // console.log(URIs);
         resolve(URIs)
       })
       .catch(error => {

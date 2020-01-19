@@ -25,7 +25,7 @@ function makeRequestSpotlight (query = '') {
         }
       })
       .catch(error => {
-        reject(error)
+        reject(error.response)
       })
   })
 }

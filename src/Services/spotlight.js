@@ -12,14 +12,22 @@ function makeRequestSpotlight (query) {
     let URL = 'https://api.dbpedia-spotlight.org/en/annotate?text=' + query + '&confidence=0.8'
     fetch(URL, options)
       .then((result) => {
-        return result.json()
+        if (result.ok) {
+          return result.json()
+        } else {
+          return { 'Resources': [] }
+        }
       })
       .then((data) => {
-        let URIs = []
-        data['Resources'].forEach((object) => {
-          URIs.push(object['@URI'])
-        })
-        resolve(URIs)
+        if (data['Resources'] != null) {
+          let URIs = []
+          data['Resources'].forEach((object) => {
+            URIs.push(object['@URI'])
+          })
+          resolve(URIs)
+        } else {
+          resolve([])
+        }
       })
       .catch(error => {
         console.log(error)

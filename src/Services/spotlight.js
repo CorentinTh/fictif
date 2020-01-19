@@ -1,19 +1,14 @@
-function makeRequestSpotlight (query) {
-  return new Promise((resolve, reject) => {
-    let myHeaders = {
-      accept: 'application/json'
-    }
+import axios from 'axios'
 
-    let options = {
-      method: 'GET',
-      headers: myHeaders
-    }
+function makeRequestSpotlight (query = '') {
+  return new Promise((resolve, reject) => {
     query = encodeURIComponent(query)
     let URL = 'https://api.dbpedia-spotlight.org/en/annotate?text=' + query + '&confidence=0.8'
-    fetch(URL, options)
+    axios.get(URL)
+      // fetch(URL, options)
       .then((result) => {
-        if (result.ok) {
-          return result.json()
+        if (result.status < 300 && result.status >= 200) {
+          return result.data
         } else {
           return { 'Resources': [] }
         }
@@ -30,7 +25,6 @@ function makeRequestSpotlight (query) {
         }
       })
       .catch(error => {
-        console.log(error)
         reject(error)
       })
   })

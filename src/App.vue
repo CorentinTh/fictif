@@ -15,7 +15,7 @@
     </div>
 
     <div class="footer">
-      <div class="row"><a href="//fictif.now.sh">Fictif</a> has been during the Web semantic course at INSA-Lyon by:
+      <div class="row"><a href="//fictif.now.sh">Fictif</a> has been created for the Web semantic course at INSA-Lyon by:
       </div>
       <ul class="row">
         <li><a href="//github.com/theochp">Théo Champion</a></li>
@@ -49,6 +49,7 @@ export default {
   html, body {
     height: 100%;
     margin: 0;
+    background-color: #fafafa !important;
   }
 
   .app-container {

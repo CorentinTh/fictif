@@ -2,7 +2,7 @@
   <div class="form">
     <form id="form-recherche" class="form">
       <div class="input-group form-line-one">
-        <input type="text" class="form-input" placeholder="Quel personnage cherchez-vous?">
+        <input type="text" class="form-input" v-model="request" v-on:input="onChange(request)" placeholder="Quel personnage cherchez-vous?">
         <button class="btn btn-primary input-group-btn">Chercher</button>
       </div>
       <div class="button-lucky">
@@ -17,8 +17,21 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  created () {
+    console.log(this);
+  },
+  data () {
+    return {
+      request: '',
+      onChange: function () {
+        if (this.request.length > 2) {
+          console.log(this.request);
+        }
+      }
+    };
   }
-}
+};
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

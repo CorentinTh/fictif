@@ -2,7 +2,8 @@
   <div class="form">
     <form id="form-recherche" class="form">
       <div class="input-group form-line-one">
-        <input type="text" class="form-input" v-model="request" v-on:input="onChange(request)" placeholder="Quel personnage cherchez-vous?">
+        <input type="text" class="form-input" v-model="request" v-on:input="delayedRequest(request)"
+               placeholder="Quel personnage cherchez-vous?">
         <button class="btn btn-primary input-group-btn">Chercher</button>
       </div>
       <div class="button-lucky">
@@ -24,10 +25,18 @@ export default {
   data () {
     return {
       request: '',
-      onChange: function () {
-        if (this.request.length > 2) {
-          console.log(this.request);
+      timeoutID: null,
+      delayedRequest: () => {
+        if (this.timeoutID) {
+          window.clearTimeout(this.timeoutID);
         }
+        if (this.request.length > 2) {
+          this.timeoutID = window.setTimeout(this.onChange, 500);
+        }
+      },
+      onChange: () => {
+        // TODO : add service that makes request
+        console.log(this.request);
       }
     };
   }
@@ -40,11 +49,11 @@ export default {
     text-align: center;
   }
 
-  .hint{
+  .hint {
     text-align: center;
   }
 
-  .form{
+  .form {
     text-align: center;
     width: 100%;
     display: flex;
@@ -53,7 +62,7 @@ export default {
     align-items: center;
   }
 
-  .form-line-one{
+  .form-line-one {
     width: 100%;
     display: flex;
     flex-direction: row;
@@ -61,7 +70,7 @@ export default {
     align-items: center;
   }
 
-  .button-lucky{
+  .button-lucky {
     padding-top: 16px;
   }
 

@@ -1,6 +1,8 @@
 import { makeRequestSpotlight } from '../../src/Services/spotlight'
 
 it('should return error 400 if empty params', async () => {
+  const result = await makeRequestSpotlight()
+  /*
   expect.assertions(1)
   await expect(makeRequestSpotlight()).rejects.toMatchObject(
     {
@@ -8,6 +10,8 @@ it('should return error 400 if empty params', async () => {
       'statusText': 'Bad Request'
     }
   )
+  */
+  expect(result).toEqual([])
 })
 
 it('should call spotlight api', async () => {
@@ -21,4 +25,12 @@ it('should call spotlight api', async () => {
 
   console.log(result)
   expect(result).not.toHaveLength(0)
+})
+
+it('should call spotlight api', async () => {
+  const query = 'pzkapdazd'
+  const result = await makeRequestSpotlight(query)
+
+  console.log(result)
+  expect(result).toEqual([])
 })

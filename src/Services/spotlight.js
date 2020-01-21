@@ -14,7 +14,7 @@ function makeRequestSpotlight (query = '') {
         }
       })
       .then((data) => {
-        if (data['Resources'] != null) {
+        if (data['Resources']) {
           let URIs = []
           data['Resources'].forEach((object) => {
             URIs.push(object['@URI'])
@@ -25,7 +25,8 @@ function makeRequestSpotlight (query = '') {
         }
       })
       .catch(error => {
-        reject(error.response)
+        console.log(error.response.status + ' ' + error.response.statusMessage)
+        resolve([])
       })
   })
 }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Title msg="Bienvenue chez Fict'If!"/>
+    <Title class="title" msg="Bienvenue chez Fict'If!"/>
     <div class="form">
       <Form />
     </div>
@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import Title from '../components/Title.vue'
-import Form from '../components/Form.vue'
+import Title from '../components/Title.vue';
+import Form from '../components/Form.vue';
 
 export default {
   name: 'app',
@@ -17,7 +17,7 @@ export default {
     Title,
     Form
   }
-}
+};
 </script>
 
 <style lang="less">
@@ -28,6 +28,10 @@ export default {
     text-align: center;
     color: #2c3e50;
     margin-top: 60px;
+  }
+
+  .title{
+    margin-top: 26px;
   }
 
   .form{

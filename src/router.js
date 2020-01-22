@@ -1,11 +1,11 @@
-import Home from './routes/Home.route';
 import About from './routes/About.route';
 import VueRouter from 'vue-router';
+import SearchPage from './routes/SearchPage.vue';
 
 const routes = [
   {
     path: '/',
-    component: Home
+    component: SearchPage
   },
   {
     path: '/about',

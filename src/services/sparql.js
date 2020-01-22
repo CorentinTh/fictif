@@ -1,6 +1,6 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const BASE_URL = 'https://dbpedia.org/sparql'
+const BASE_URL = 'https://dbpedia.org/sparql';
 
 /**
  * Execute SparQL queries against dbpedia api
@@ -9,8 +9,8 @@ const BASE_URL = 'https://dbpedia.org/sparql'
  */
 const sparqlExecutor = (query = '') => axios.get(`${BASE_URL}?query=${encodeURIComponent(query)}&format=json`)
   .then(result => result?.data?.results?.bindings ?? [])
-  .catch(_ => [])
+  .catch(_ => []);
 
 export {
   sparqlExecutor
-}
+};

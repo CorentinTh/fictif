@@ -1,7 +1,14 @@
 <template>
   <Card class="character-container">
 
-    <Spinner v-if="!character"/>
+    <Spinner v-if="character === undefined"/>
+
+    <div class="not-found" v-if="character === null">
+      <div class="not-found-title">404</div>
+      <div class="not-found-apologies">
+        Sorry, but we can't find your fictional character, any spelling mistakes? Are you sure it exists ?
+      </div>
+    </div>
 
     <div v-if="character">
       <div class="header">
@@ -19,9 +26,7 @@
         <p class="character-abstract">{{ character.abstract}}</p>
         <div class="character-details-list">
           <h5>Details</h5>
-          <div class="character-details-list-item"><strong>Gender:</strong> {{ character.gender}}</div>
-          <div class="character-details-list-item"><strong>Creator:</strong> {{ character.creator}}</div>
-          <div class="character-details-list-item"><strong>First game:</strong> {{ character.first_game}}</div>
+          <div class="character-details-list-item" v-for="detail in details" v-bind:key="detail.label"><strong>{{detail.label}}:</strong> {{ character[detail.field] }}</div>
         </div>
       </div>
     </div>
@@ -32,23 +37,27 @@
 <script>
 import Card from './Card';
 import Spinner from './Spinner';
+import { getCharacterInfo } from '../services/sparql';
 
 export default {
   name: 'CharacterDetails',
   props: {
     name: String
   },
-  character: false,
-  created () {
-    this.character = {
-      name: 'Mario',
-      thumbnail: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/bf/Mario_emblem.svg/100px-Mario_emblem.svg.png',
-      description: 'fictional character from Nintendo\'s Mario franchise',
-      abstract: 'Mario (Japanese: マリオ Hepburn: Mario, [ma.ɽi.o]) (English /ˈmɑːrioʊ/; Italian: [ˈmaːrjo]) is a fictional character in the Mario video game franchise, owned by Nintendo and created by video game designer Shigeru Miyamoto. Serving as the company\'s mascot and the eponymous protagonist of the series, Mario has appeared in over 200 video games since his creation. Depicted as a short, pudgy, Italian plumber who resides in the Mushroom Kingdom, his adventures generally center upon rescuing Princess Peach from the Koopa villain Bowser. His younger brother is Luigi. The Mario franchise is the best-selling video game franchise of all time. Over 210 million units of the overall Mario series of games have been sold. Outside of the Super Mario platform series, other Mario genres include the Mario Kart racing series, sports games such as the Mario Tennis and Mario Golf series, role-playing games such as Super Mario RPG and Paper Mario, and educational games such as Mario Is Missing! and Mario\'s Time Machine. The franchise has branched into several mediums, including television shows, film, comics and licensed merchandise. Since 1995, Mario has been voiced by Charles Martinet. ',
-      gender: 'male',
-      creator: 'Shigeru Miyamoto',
-      first_game: 'Donkey Kong'
+  data () {
+    return {
+      character: undefined,
+      details: []
     };
+  },
+  async created () {
+    this.character = await getCharacterInfo(this.$props.name);
+
+    this.details = [
+      { label: 'Gender', field: 'gender' },
+      { label: 'Job', field: 'job' },
+      { label: 'Nationality', field: 'nationality' }
+    ].filter(({ field }) => this.character[field]);
   },
   components: {
     Card,
@@ -60,6 +69,22 @@ export default {
 <style lang="less">
   .character-container {
     padding: 30px !important;
+
+    .not-found{
+      width: 400px;
+      margin: 100px auto;
+      text-align: center;
+
+      .not-found-title{
+        font-size: 50px;
+        color: #585bd9;
+      }
+
+      .not-found-apologies{
+        font-size: 20px;
+        opacity: 0.5;
+      }
+    }
 
     .spinner .loading {
       font-size: 50px;
@@ -109,7 +134,7 @@ export default {
         padding-left: 16px;
         border-left: 1px solid rgba(0, 0, 0, 0.25);
 
-        h5{
+        h5 {
           text-align: center;
           margin-bottom: 25px;
         }

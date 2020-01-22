@@ -2,12 +2,13 @@
   <div class="app-container">
     <div class="page-container">
 
-      <HelloWorld msg="Welcome to Your Vue.js App"/>
-
       <div class="text-center">
         <router-link to="/" class="btn btn-primary">Home</router-link>&nbsp;
-        <router-link to="/about" class="btn btn-primary">A propos</router-link>
+        <router-link to="/about" class="btn btn-primary">A propos</router-link>&nbsp;
+        <router-link to="/character/Mario" class="btn btn-primary">Details</router-link>
       </div>
+      <br>
+      <br>
 
       <router-view/>
 
@@ -33,13 +34,9 @@
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
 
 export default {
-  name: 'app',
-  components: {
-    HelloWorld
-  }
+  name: 'app'
 };
 </script>
 

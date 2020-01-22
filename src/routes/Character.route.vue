@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="wrapper">
-      <CharacterDetails name="Mario"/>
+      <CharacterDetails :name="$route.params.name"/>
     </div>
   </div>
 </template>

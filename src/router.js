@@ -1,6 +1,6 @@
 import Home from './routes/Home.route';
 import About from './routes/About.route';
-import Details from './routes/Details.route';
+import Character from './routes/Character.route';
 import VueRouter from 'vue-router';
 
 const routes = [
@@ -13,8 +13,12 @@ const routes = [
     component: About
   },
   {
-    path: '/details',
-    component: Details
+    path: '/character/:name',
+    component: Character
+  },
+  {
+    path: '*',
+    redirect: '/'
   }
 ];
 

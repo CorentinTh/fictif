@@ -1,42 +1,33 @@
 <template>
-  <div>
-    <Title class="title" msg="Bienvenue chez Fict'If!"/>
+  <div class="page-content">
+    <Title />
     <div class="form">
-      <Form />
+      <SearchForm />
     </div>
   </div>
 </template>
 
 <script>
 import Title from '../components/Title.vue';
-import Form from '../components/Form.vue';
+import SearchForm from '../components/SearchForm';
 
 export default {
   name: 'app',
   components: {
     Title,
-    Form
+    SearchForm
   }
 };
 </script>
 
 <style lang="less">
-  #app {
-    font-family: 'Avenir', Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
+  .page-content{
+    padding-top: 200px;
 
-  .title{
-    margin-top: 26px;
   }
 
   .form{
     margin: 0 auto;
-    height: 400px;
     width: 500px;
     display: flex;
     flex-direction: row;

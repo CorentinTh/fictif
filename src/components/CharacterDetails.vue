@@ -26,7 +26,9 @@
         <p class="character-abstract">{{ character.abstract}}</p>
         <div class="character-details-list">
           <h5>Details</h5>
-          <div class="character-details-list-item" v-for="detail in details" v-bind:key="detail.label"><strong>{{detail.label}}:</strong> {{ character[detail.field] }}</div>
+          <div class="character-details-list-item" v-for="detail in details" v-bind:key="detail.label"><strong>{{detail.label}}:</strong>
+            {{ character[detail.field] }}
+          </div>
         </div>
       </div>
     </div>
@@ -70,17 +72,17 @@ export default {
   .character-container {
     padding: 30px !important;
 
-    .not-found{
+    .not-found {
       width: 400px;
       margin: 100px auto;
       text-align: center;
 
-      .not-found-title{
+      .not-found-title {
         font-size: 50px;
         color: #585bd9;
       }
 
-      .not-found-apologies{
+      .not-found-apologies {
         font-size: 20px;
         opacity: 0.5;
       }

@@ -1,7 +1,7 @@
 import About from './routes/About.route';
 import Character from './routes/Character.route';
+import SearchPage from './routes/Home.route';
 import VueRouter from 'vue-router';
-import SearchPage from './routes/SearchPage.vue';
 
 const routes = [
   {

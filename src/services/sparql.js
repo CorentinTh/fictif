@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://dbpedia.org/sparql';
+const BASE_URL = 'https://dbpedia.org/sparql';
 
 /**
  * Execute SparQL queries against dbpedia api

@@ -1,11 +1,11 @@
-import { sparqlExecutor } from '../../src/services/sparql'
+import { sparqlExecutor } from '../../src/services/sparql';
 
 it('should returns empty array if empty params', async () => {
-  const result = await sparqlExecutor()
+  const result = await sparqlExecutor();
 
-  expect(result).toEqual([])
-  expect(result).toHaveLength(0)
-})
+  expect(result).toEqual([]);
+  expect(result).toHaveLength(0);
+});
 
 it('should returns empty array if wrong params', async () => {
   await Promise.all(
@@ -14,13 +14,13 @@ it('should returns empty array if wrong params', async () => {
       'azert',
       '456'
     ].map(async string => {
-      const result = await sparqlExecutor(string)
+      const result = await sparqlExecutor(string);
 
-      expect(result).toEqual([])
-      expect(result).toHaveLength(0)
+      expect(result).toEqual([]);
+      expect(result).toHaveLength(0);
     })
-  )
-})
+  );
+});
 
 it('should execute sparql query', async () => {
   const query = '' +
@@ -30,9 +30,9 @@ it('should execute sparql query', async () => {
     '    ?c rdf:type <http://dbpedia.org/ontology/FictionalCharacter> .\n' +
     '    ?c rdfs:label ?label .\n' +
     '    FILTER (lang(?label) = \'fr\')\n' +
-    '}'
+    '}';
 
-  const result = await sparqlExecutor(query)
+  const result = await sparqlExecutor(query);
 
-  expect(result).not.toHaveLength(0)
-})
+  expect(result).not.toHaveLength(0);
+});

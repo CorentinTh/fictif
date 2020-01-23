@@ -1,16 +1,14 @@
 <template>
-  <div class="form">
-    <form id="form-recherche" class="form">
+    <form class="form" v-on:submit.prevent="onValidated">
       <div class="input-group form-line-one">
         <input type="text" class="form-input" v-model="request" v-on:input="delayedRequest(request)"
-               placeholder="Quel personnage cherchez-vous?">
-        <button class="btn btn-primary input-group-btn">Chercher</button>
+               placeholder="Search for a fictional character">
+        <button class="btn btn-primary input-group-btn"  type="submit">Search</button>
       </div>
 <!--      <div class="button-lucky">-->
 <!--        <button class="btn btn-primary input-group-btn">I'm feeling lucky!</button>-->
 <!--      </div>-->
     </form>
-  </div>
 </template>
 
 <script>
@@ -37,6 +35,10 @@ export default {
       onChange: () => {
         // TODO : add service that makes request
         console.log(this.request);
+      },
+      onValidated: () => {
+        console.log(this.request);
+        this.$router.push(`/query/${decodeURIComponent(this.request)}`);
       }
     };
   }
@@ -45,13 +47,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-  h1 {
-    text-align: center;
-  }
-
-  .hint {
-    text-align: center;
-  }
 
   .form {
     text-align: center;

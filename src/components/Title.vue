@@ -1,7 +1,7 @@
 <template>
-  <div class="title">
-    <h1>- Fict<span>IF</span> -</h1>
-    <div class="subtitle">Fictional character search engine</div>
+  <div class="title" v-bind:class="{small}">
+    <h1><span v-if="dash">-</span> Fict<span class="colored">IF</span> <span v-if="dash">-</span></h1>
+    <div class="subtitle" v-if="!small">Fictional character search engine</div>
   </div>
 </template>
 
@@ -9,7 +9,14 @@
 export default {
   name: 'Title',
   props: {
-    msg: String
+    dash: {
+      type: Boolean,
+      default: true
+    },
+    small: {
+      type: Boolean,
+      default: false
+    }
   }
 };
 </script>
@@ -27,9 +34,17 @@ export default {
     color: rgb(53, 53, 53);
     margin: 0;
 
-    span {
+    .colored {
       color: #585bd9;
     }
+  }
+
+  &.small {
+    h1{
+      font-size: 40px;
+    }
+
+    margin: 0;
   }
 
   .subtitle{

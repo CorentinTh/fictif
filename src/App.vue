@@ -38,7 +38,7 @@ export default {
   html, body {
     height: 100%;
     margin: 0;
-    background-color: #fafafa !important;
+    /*background-color: #fafafa !important;*/
   }
 
   .app-container {

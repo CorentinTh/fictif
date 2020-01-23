@@ -1,7 +1,7 @@
 <template>
-  <div class="page-content">
+  <div class="home-route-container">
     <Title />
-    <div class="form">
+    <div class="form-wrapper">
       <SearchForm />
     </div>
   </div>
@@ -21,17 +21,17 @@ export default {
 </script>
 
 <style lang="less">
-  .page-content{
+  .home-route-container{
     padding-top: 200px;
 
+    .form-wrapper{
+      margin: 0 auto;
+      width: 500px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+    }
   }
 
-  .form{
-    margin: 0 auto;
-    width: 500px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
 </style>

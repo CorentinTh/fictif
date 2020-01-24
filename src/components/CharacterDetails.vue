@@ -11,7 +11,7 @@
     </div>
 
     <div v-if="character">
-      <div class="header">
+      <div class="character-header">
         <img :src="character.thumbnail" alt="" class="img-fit-cover header-thumbnail">
 
         <div class="header-info">
@@ -68,9 +68,10 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" >
   .character-container {
     padding: 30px !important;
+    background-color: #fafafa !important;
 
     .not-found {
       width: 400px;
@@ -99,7 +100,7 @@ export default {
       margin: 16px 0;
     }
 
-    .header {
+    .character-header {
       display: flex;
       flex-direction: row;
       align-items: center;

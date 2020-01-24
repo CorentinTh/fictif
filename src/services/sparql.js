@@ -44,7 +44,7 @@ const getCharacterInfo = (character = '') => sparqlExecutor(`
     }
     LIMIT 1
   `)
-  .then(result => result && result[0] ? Object.entries(result[0]).reduce((acc, [key, data]) => Object.assign(acc, { [key]: data.value }), {}) : null);
+  .then(result => result && result[0] ? Object.entries(result[0]).reduce((acc, [key, data]) => Object.assign(acc, { [key]: data.value.replace(/\\\\/g, '') }), {}) : null);
 
 export {
   sparqlExecutor,

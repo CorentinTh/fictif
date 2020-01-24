@@ -15,10 +15,14 @@
 export default {
   name: 'SearchForm',
   props: {
-    msg: String
+    value: {
+      type: String,
+      default: ''
+    }
   },
   created () {
     console.log(this);
+    this.request = this.value;
   },
   data () {
     return {
@@ -39,6 +43,7 @@ export default {
       onValidated: () => {
         console.log(this.request);
         this.$router.push(`/query/${decodeURIComponent(this.request)}`);
+        this.$router.go();
       }
     };
   }

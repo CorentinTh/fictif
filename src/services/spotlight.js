@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-function makeRequestSpotlight (confidence = 0.5, query) {
+function makeRequestSpotlight (query, confidence = 0.5) {
   return new Promise((resolve, reject) => {
     query = encodeURIComponent(query);
     let URL = 'https://api.dbpedia-spotlight.org/en/annotate?text=' + query + '&confidence=' + confidence;

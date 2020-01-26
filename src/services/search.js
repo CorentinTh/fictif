@@ -12,11 +12,9 @@ const getRelatedCharacters = keywords => {
     where {
 
       ?subject rdf:type <http://dbpedia.org/ontology/FictionalCharacter> .
-      ?subject dbo:abstract ?ab .
+      ?subject dbo:abstract ?d .
 
-      BIND(LCASE(STR(?ab)) as ?d)
-
-      ${keywords.map((k, i) => `BIND(CONTAINS(?d, "${k}") as ?t${i})`).join('\n')}
+      ${keywords.map((k, i) => `BIND(REGEX(?d, "${k}", "i") as ?t${i})`).join('\n')}
       FILTER (LANG(?name)='en' && (${variables.join('||')}))
 
       ?subject rdfs:label ?name

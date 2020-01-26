@@ -7,7 +7,6 @@ const getRelatedCharacters = node =>
         ?name
         ?thumbnail
         ?description
-
      where {
       ?subject rdf:type <http://dbpedia.org/ontology/FictionalCharacter> .
       ?subject ?tmp1 <${node}> .
@@ -18,7 +17,7 @@ const getRelatedCharacters = node =>
 
       FILTER (lang(?name)='en')
     }
-    LIMIT 100`);
+    LIMIT 50`);
 
 const getCharactersFromQuery = async (query) => {
   const topics = await makeRequestSpotlight(query);

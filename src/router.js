@@ -18,6 +18,10 @@ const routes = [
     component: Results
   },
   {
+    path: '/autocomp/:query',
+    component: SearchPage
+  },
+  {
     path: '/character/:name',
     component: Character
   },

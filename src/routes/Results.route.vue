@@ -126,7 +126,7 @@ export default {
       .results-container {
         margin-left: 139px;
         flex: 0 0 20%;
-        min-width: 300px;
+        min-width: 500px;
         margin-bottom: 50px;
         min-height: 720px;
         position: relative;

@@ -25,6 +25,7 @@ export default {
     cursor: pointer;
     padding: 8px 16px ;
     transition: all ease 0.2s;
+    border-bottom: 1px solid rgba(200, 200, 200, 0.59);
 
     &:hover{
       background-color: #fafafa;

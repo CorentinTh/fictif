@@ -2,20 +2,20 @@
   <div class="home-route-container">
     <Title />
     <div class="form-wrapper">
-      <SearchForm />
+      <SearchFormWithAutocomplete />
     </div>
   </div>
 </template>
 
 <script>
 import Title from '../components/Title.vue';
-import SearchForm from '../components/SearchForm';
+import SearchFormWithAutocomplete from '../components/SearchFormWithAutocomplete';
 
 export default {
   name: 'app',
   components: {
     Title,
-    SearchForm
+    SearchFormWithAutocomplete
   }
 };
 </script>

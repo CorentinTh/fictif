@@ -106,6 +106,7 @@ export default {
 
 <style lang="less">
   .results {
+    height: 100%;
     .results-header {
       display: flex;
       flex-direction: row;
@@ -142,18 +143,20 @@ export default {
     .results-body {
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
-      padding: 50px;
+      justify-content: center;
+      padding: 50px 50px 0;
+      min-height: 100%;
 
       .results-container {
         margin-left: 139px;
         flex: 0 0 20%;
         min-width: 500px;
-        margin-bottom: 50px;
-        min-height: 720px;
+        min-height: 750px;
         position: relative;
+        padding-bottom: 80px;
 
         .pagination {
+          margin-top: 20px;
           position: absolute;
           bottom: 0;
 

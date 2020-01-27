@@ -1,7 +1,7 @@
 import { makeRequestSpotlight } from '../../src/services/spotlight';
 
 it('should return error 400 if empty params', async () => {
-  const result = await makeRequestSpotlight(0.8);
+  const result = await makeRequestSpotlight();
   /*
   expect.assertions(1)
   await expect(makeRequestSpotlight()).rejects.toMatchObject(
@@ -21,7 +21,7 @@ it('should call spotlight api', async () => {
     'originally broadcast on ITV, beginning with the pilot on 1 January 1990[1] and ending with The Best Bits of ' +
     'Mr. Bean 15 December 1995.';
 
-  const result = await makeRequestSpotlight(0.8, query);
+  const result = await makeRequestSpotlight(query, 0.8);
 
   console.log(result);
   expect(result).not.toHaveLength(0);
@@ -29,7 +29,7 @@ it('should call spotlight api', async () => {
 
 it('should call spotlight api', async () => {
   const query = 'pzkapdazd';
-  const result = await makeRequestSpotlight(0.8, query);
+  const result = await makeRequestSpotlight(query, 0.8);
 
   console.log(result);
   expect(result).toEqual([]);

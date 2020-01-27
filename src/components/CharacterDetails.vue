@@ -11,7 +11,7 @@
     </div>
 
     <div v-if="character">
-      <div class="header">
+      <div class="character-header">
         <img :src="character.thumbnail" alt="" class="img-fit-cover header-thumbnail">
 
         <div class="header-info">
@@ -19,14 +19,20 @@
           <div class="subtitle">{{ character.description}}</div>
         </div>
       </div>
-
       <hr/>
-
       <div class="character-details-container">
         <p class="character-abstract">{{ character.abstract}}</p>
-        <div class="character-details-list">
+        <div class="character-details-list" v-if="details.length > 0">
           <h5>Details</h5>
-          <div class="character-details-list-item" v-for="detail in details" v-bind:key="detail.label"><strong>{{detail.label}}:</strong> {{ character[detail.field] }}</div>
+          <div class="character-details-list-item" v-for="detail in details" v-bind:key="detail.label">
+            <div v-if="detail.type === 'string'"><strong>{{detail.label}}:</strong> {{ character[detail.field] }}</div>
+            <div v-if="detail.type === 'charList'">
+              <strong>{{detail.label}}:</strong>
+              <ul class="char-list">
+                <li v-for="(char, i) in character[detail.field].split(', ')" v-bind:key="i">{{char}}</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -52,11 +58,19 @@ export default {
   },
   async created () {
     this.character = await getCharacterInfo(this.$props.name);
-
+    console.log(this.character);
     this.details = [
-      { label: 'Gender', field: 'gender' },
-      { label: 'Job', field: 'job' },
-      { label: 'Nationality', field: 'nationality' }
+      { label: 'Gender', field: 'gender', type: 'string' },
+      { label: 'Job', field: 'job', type: 'string' },
+      { label: 'Nationality', field: 'nationality', type: 'string' },
+      { label: 'Species', field: 'species', type: 'string' },
+      { label: 'Country', field: 'country', type: 'string' },
+      { label: 'Birth date', field: 'birthDate', type: 'string' },
+      { label: 'Creator', field: 'creator', type: 'string' },
+      { label: 'Relatives', field: 'relatives', type: 'charList' },
+      { label: 'Children', field: 'child', type: 'charList' },
+      { label: 'Spouse', field: 'spouse', type: 'charList' }
+
     ].filter(({ field }) => this.character[field]);
   },
   components: {
@@ -66,21 +80,26 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" >
   .character-container {
     padding: 30px !important;
+    background-color: #fafafa !important;
 
-    .not-found{
+    .char-list, .char-list li{
+        margin-top: 0;
+    }
+
+    .not-found {
       width: 400px;
       margin: 100px auto;
       text-align: center;
 
-      .not-found-title{
+      .not-found-title {
         font-size: 50px;
         color: #585bd9;
       }
 
-      .not-found-apologies{
+      .not-found-apologies {
         font-size: 20px;
         opacity: 0.5;
       }
@@ -97,7 +116,7 @@ export default {
       margin: 16px 0;
     }
 
-    .header {
+    .character-header {
       display: flex;
       flex-direction: row;
       align-items: center;

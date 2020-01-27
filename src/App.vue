@@ -2,21 +2,14 @@
   <div class="app-container">
     <div class="page-container">
 
-      <div class="text-center">
-        <router-link to="/" class="btn btn-primary">Home</router-link>&nbsp;
-        <router-link to="/about" class="btn btn-primary">A propos</router-link>&nbsp;
-        <router-link to="/character/Mario" class="btn btn-primary">Details</router-link>
-      </div>
-      <br>
-      <br>
-
       <router-view/>
 
       <div class="push"></div>
     </div>
 
     <div class="footer">
-      <div class="row"><a href="//fictif.now.sh">Fictif</a> has been created for the Web semantic course at INSA-Lyon by:
+      <div class="row">
+        <a href="//fictif.now.sh">Fictif</a> has been created for the Web semantic course at INSA-Lyon by:
       </div>
       <ul class="row">
         <li><a href="//github.com/theochp">Théo Champion</a></li>
@@ -34,7 +27,6 @@
 </template>
 
 <script>
-
 export default {
   name: 'app'
 };
@@ -46,7 +38,7 @@ export default {
   html, body {
     height: 100%;
     margin: 0;
-    background-color: #fafafa !important;
+    /*background-color: #fafafa !important;*/
   }
 
   .app-container {

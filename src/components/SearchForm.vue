@@ -189,14 +189,20 @@ export default {
 
         &.autocomplete-result-active{
           background-color: #f2f2f2;
-          color: #585bd9;
         }
         &:hover {
           .autocomplete-result-active;
+          color: #585bd9;
+
         }
 
         &:not(:last-child) {
           border-bottom: 1px solid #bcc3ce;
+        }
+
+        &:last-child{
+          border-bottom-left-radius: 20px;
+          border-bottom-right-radius: 20px;
         }
       }
     }

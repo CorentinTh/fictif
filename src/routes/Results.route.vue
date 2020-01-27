@@ -8,8 +8,12 @@
     <div class="results-body">
       <div class="results-container">
         <div v-if="results && results.length > 0">
-          <Result v-for="(character, i) in results.slice(page*itemPerPage, (page+1)*itemPerPage)" v-bind:key="i"
-                  :character="character" @click="display(character.name)"/>
+          <Result v-for="(character, i) in results.slice(page*itemPerPage, (page+1)*itemPerPage)"
+                  v-bind:key="i"
+                  :character="character"
+                  :position="i+1 + page*itemPerPage"
+                  @click="display(character.name)"
+          />
 
           <ul class="pagination" v-if="pageMax > 1">
             <li class="page-item" v-bind:class="{disable:page===0}">

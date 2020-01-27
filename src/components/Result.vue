@@ -1,5 +1,6 @@
 <template>
   <div class="result" @click="$emit('click')">
+    <div class="position" v-if="position">{{position}}</div>
     <div class="result-title-wrapper">
       <div class="result-title">{{character.name.replace('(character)', '')}}</div>
       <div class="result-subtitle">{{character.description}}</div>
@@ -12,11 +13,13 @@
 export default {
   name: 'Result.vue',
   props: {
+    position: Number,
     character: {
       name: String,
       description: String,
       thumbnail: String,
-      slug: String
+      slug: String,
+      score: Number
     }
   }
 };
@@ -32,7 +35,7 @@ export default {
     min-height: 70px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    /*justify-content: space-between;*/
     align-items: center;
 
     &:hover{
@@ -43,15 +46,22 @@ export default {
       }
     }
 
+    .position{
+      font-size: 25px;
+      opacity: 0.5;
+      margin-right: 20px;
+    }
     .result-title-wrapper{
       display: flex;
       flex-direction: column;
       align-items: flex-start;
+      flex-grow: 1;
     }
 
     .score{
       opacity: 0.2;
       min-width: 30px;
+      text-align: right;
     }
 
     .result-title{

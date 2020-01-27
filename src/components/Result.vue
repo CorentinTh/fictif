@@ -47,9 +47,11 @@ export default {
     }
 
     .position{
-      font-size: 25px;
-      opacity: 0.5;
+      font-size: 20px;
+      opacity: 0.3;
       margin-right: 20px;
+      min-width: 37px;
+      text-align: center;
     }
     .result-title-wrapper{
       display: flex;

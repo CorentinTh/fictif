@@ -11,7 +11,7 @@ const buildRequest = keywords => {
       ?name
       ?thumbnail
       ?description
-      ((${varAbstract.join('+')}) + 2*(${varName.join('+')}) as ?score)
+      ((${varAbstract.join('+')}) + (${varName.join('+')}) as ?score)
     where {
 
       ?subject rdf:type <http://dbpedia.org/ontology/FictionalCharacter> .
@@ -21,7 +21,7 @@ const buildRequest = keywords => {
       OPTIONAL { ?subject dbo:thumbnail ?thumbnail .}
 
       ${keywords.map((k, i) => `BIND(exists{?subject dbo:abstract ?d . ?d bif:contains "'${k}'"} as ?ab${i})`).join('\n')}
-      ${keywords.map((k, i) => `BIND(exists{?subject rdfs:label ?name . ?name bif:contains "'${k}'"} as ?na${i})`).join('\n')}
+      ${keywords.map((k, i) => `BIND(exists{?subject foaf:name ?name . ?name bif:contains "'${k}'"} as ?na${i})`).join('\n')}
 
       FILTER (LANG(?name)='en' && (${varAbstract.join('||')}))
     }

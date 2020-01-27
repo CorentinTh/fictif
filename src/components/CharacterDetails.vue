@@ -22,7 +22,7 @@
       <hr/>
       <div class="character-details-container">
         <p class="character-abstract">{{ character.abstract}}</p>
-        <div class="character-details-list">
+        <div class="character-details-list" v-if="details.length > 0">
           <h5>Details</h5>
           <div class="character-details-list-item" v-for="detail in details" v-bind:key="detail.label">
             <div v-if="detail.type === 'string'"><strong>{{detail.label}}:</strong> {{ character[detail.field] }}</div>

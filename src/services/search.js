@@ -8,23 +8,21 @@ const buildRequest = keywords => {
   const varDesc = keywords.map((_, i) => `?de${i}`);
 
   return `
-
     select distinct
       ?name
-      ?thumbnail
       ?description
       ((${varAbst.join('+')}) + (${varName.join('*3 +')}*3) + (${varDesc.join('*2 +')}*2) as ?score)
     where {
 
-      ?subject rdf:type <http://dbpedia.org/ontology/FictionalCharacter> .
-      ?subject dbo:abstract ?d .
-      ?subject rdfs:label ?name
-      OPTIONAL { ?subject dct:description ?description}
-      OPTIONAL { ?subject dbo:thumbnail ?thumbnail .}
+      ?su rdf:type <http://dbpedia.org/ontology/FictionalCharacter> .
+      ?su dbo:abstract ?d .
+      ?su rdfs:label ?name
 
-      ${keywords.map((k, i) => `BIND(exists{?subject dct:description ?de . ?de bif:contains "'${k}'"} as ?de${i})`).join('\n')}
-      ${keywords.map((k, i) => `BIND(exists{?subject dbo:abstract ?ab . ?ab bif:contains "'${k}'"} as ?ab${i})`).join('\n')}
-      ${keywords.map((k, i) => `BIND(exists{?subject foaf:name ?na . ?na bif:contains "'${k}'"} as ?na${i})`).join('\n')}
+      OPTIONAL { ?su dct:description ?description}
+
+      ${keywords.map((k, i) => `BIND(exists{?su dct:description ?de . ?de bif:contains "'${k}'"} as ?de${i})`).join('\n')}
+      ${keywords.map((k, i) => `BIND(exists{?su dbo:abstract ?ab . ?ab bif:contains "'${k}'"} as ?ab${i})`).join('\n')}
+      ${keywords.map((k, i) => `BIND(exists{?su foaf:name ?na . ?na bif:contains "'${k}'"} as ?na${i})`).join('\n')}
 
       FILTER (LANG(?name)='en')
     }

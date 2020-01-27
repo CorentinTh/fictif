@@ -4,6 +4,7 @@
       <router-link to="/"><Title class="logo" :dash="false" :small="true"/></router-link>
       <SearchForm class="search-form" :value="$route.params.query"/>
     </Card>
+    <div class="performance" @click="$router.push({query: {...$route.query, score: 1}}).catch(() => {})">{{requestInfo}}</div>
 
     <div class="results-body">
       <div class="results-container">
@@ -71,6 +72,7 @@ export default {
       page: 0,
       itemPerPage: 8,
       pageMax: 0,
+      requestInfo: undefined,
       display: (slug) => {
         this.$router.push({ query: { ...this.$route.query, display: slug } }).catch(() => {
         });
@@ -89,10 +91,14 @@ export default {
   },
   created () {
     this.character = this.$route.query.display;
+    const t0 = performance.now();
 
     getCharactersFromQuery(this.$route.params.query)
       .then((data) => {
+        const t1 = performance.now();
         this.results = data ?? [];
+        this.requestInfo = `${this.results.length > 50 ? '>50' : this.results} results in ${((t1 - t0) / 100).toFixed(4)} s`;
+
         this.pageMax = Math.ceil(this.results.length / this.itemPerPage);
 
         const page = (this.$route.query.page ?? 1) - 1;
@@ -106,6 +112,8 @@ export default {
 
 <style lang="less">
   .results {
+    height: 100%;
+
     .results-header {
       display: flex;
       flex-direction: row;
@@ -139,21 +147,27 @@ export default {
       }
     }
 
+    .performance{
+      opacity: 0.3;
+      margin-left: 200px;
+    }
     .results-body {
       display: flex;
       flex-direction: row;
-      align-items: flex-start;
-      padding: 50px;
+      justify-content: center;
+      padding: 30px 50px 0;
+      min-height: 100%;
 
       .results-container {
         margin-left: 139px;
         flex: 0 0 20%;
         min-width: 500px;
-        margin-bottom: 50px;
-        min-height: 720px;
+        min-height: 750px;
         position: relative;
+        padding-bottom: 80px;
 
         .pagination {
+          margin-top: 20px;
           position: absolute;
           bottom: 0;
 

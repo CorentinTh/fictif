@@ -108,8 +108,26 @@ export default {
       background-color: #fafafa;
       border-radius: 0;
 
+      a {
+        &:hover {
+          text-decoration: none;
+        }
+
+        h1 {
+          transition: all 0.4s;
+          border-bottom: 2px solid transparent;
+
+          &:hover {
+            color: #585bd9 !important;
+
+            text-decoration: none;
+            border-bottom: 2px solid #585bd9;
+          }
+        }
+      }
+
       .logo {
-        padding: 0 46px 0 30px;
+        margin: 0 46px 0 30px;
       }
 
       .search-form {

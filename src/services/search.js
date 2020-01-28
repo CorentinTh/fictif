@@ -1,4 +1,4 @@
-import { sparqlExecutor } from './sparql';
+import { cleanResults, sparqlExecutor } from './sparql';
 
 const cleanQuery = query => query.toLowerCase().replace(/(["'\\])/g, '\\$1').replace(/\s\s+/g, ' ').trim().split(' ');
 
@@ -34,8 +34,9 @@ const getCharactersFromQuery = async (query) => {
   const keywords = cleanQuery(query);
   const request = buildRequest(keywords);
   const data = await sparqlExecutor(request);
+  const clean = cleanResults(data);
 
-  return data && data.length > 0 ? data.map(node => Object.entries(node).reduce((acc, [key, data]) => Object.assign(acc, { [key]: data.value.replace(/\\\\/g, '') }), {})) : [];
+  return clean.filter(result => result.score > 0);
 };
 
 export {

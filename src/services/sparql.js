@@ -62,7 +62,10 @@ const getCharacterInfo = (character = '') => sparqlExecutor(`
   `)
   .then(result => result && result[0] ? Object.entries(result[0]).reduce((acc, [key, data]) => Object.assign(acc, { [key]: data.value.replace(/\\\\/g, '') }), {}) : null);
 
+const cleanResults = (data) => data && data.length > 0 ? data.map(node => Object.entries(node).reduce((acc, [key, data]) => Object.assign(acc, { [key]: data.value.replace(/\\\\/g, '') }), {})) : [];
+
 export {
   sparqlExecutor,
-  getCharacterInfo
+  getCharacterInfo,
+  cleanResults
 };

@@ -1,6 +1,6 @@
 ![logo](./.github/logo.png)
 
-Fictif is a backendles search engine for fictionnal characters using sparql queries over dbpedia. 
+Fictif is a backendles search engine for fictionnal characters using sparql queries over dbpedia. [Try it!](//fictif.now.sh)
 
 ## Credit
 [Fictif](//fictif.now.sh) has been created for the **Web semantic** course at **INSA-Lyon** by:

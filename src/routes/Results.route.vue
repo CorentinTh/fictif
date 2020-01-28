@@ -97,7 +97,7 @@ export default {
       .then((data) => {
         const t1 = performance.now();
         this.results = data ?? [];
-        this.requestInfo = `${this.results.length > 50 ? '>50' : this.results} results in ${((t1 - t0) / 100).toFixed(4)} s`;
+        this.requestInfo = `${this.results.length > 50 ? '>50' : this.results} results in ${((t1 - t0) / 1000).toFixed(4)} s`;
 
         this.pageMax = Math.ceil(this.results.length / this.itemPerPage);
 
